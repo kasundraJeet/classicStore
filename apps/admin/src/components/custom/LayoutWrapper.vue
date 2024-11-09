@@ -11,6 +11,12 @@ const navLinks = ref([
     link_name: "Dashboard",
     link_path: "/",
     link_active: ["/"]
+  },
+  {
+    id: "2",
+    link_name: "Products",
+    link_path: "/products",
+    link_active: ["/products"]
   }
 ])
 

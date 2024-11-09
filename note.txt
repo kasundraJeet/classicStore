@@ -1,0 +1,110 @@
+const product = {
+  productId: 1,
+  name: "Slim Fit T-Shirt",
+  description: "Comfortable cotton t-shirt, perfect for casual wear.",
+  category: "T-Shirts",
+  average_rating: 4.5,
+  total_reviews: 250,
+  product_url: "https://example.com/jeans-mens-slim-fit",
+  tags: ["casual", "denim", "comfortable", "slim fit"],
+  variants: [
+    {
+      color: "Blue",
+      color_hex_code: "#0000FF",
+      sizes: [
+        {
+          size: "M",
+          imageUrls: [
+            {
+              url: "https://example.com/images/jeans-dark-blue.jpg",
+              alt: "Men's Slim Fit Jeans - Dark Blue",
+            },
+            {
+              url: "https://example.com/images/jeans-black.jpg",
+              alt: "Men's Slim Fit Jeans - Black",
+            },
+            {
+              url: "https://example.com/images/jeans-light-wash.jpg",
+              alt: "Men's Slim Fit Jeans - Light Wash",
+            },
+          ],
+          stock: 50,
+          price: 29.99,
+          discountPrice: 24.99,
+        },
+        {
+          size: "L",
+          imageUrls: [
+            {
+              url: "https://example.com/images/jeans-dark-blue.jpg",
+              alt: "Men's Slim Fit Jeans - Dark Blue",
+            },
+            {
+              url: "https://example.com/images/jeans-black.jpg",
+              alt: "Men's Slim Fit Jeans - Black",
+            },
+            {
+              url: "https://example.com/images/jeans-light-wash.jpg",
+              alt: "Men's Slim Fit Jeans - Light Wash",
+            },
+          ],
+          stock: 20,
+          price: 29.99,
+          discountPrice: 25.99,
+        },
+      ],
+    },
+    {
+      color: "Red",
+      color_hex_code: "#FF0000",
+      sizes: [
+        {
+          size: "M",
+          imageUrls: [
+            {
+              url: "https://example.com/images/jeans-dark-blue.jpg",
+              alt: "Men's Slim Fit Jeans - Dark Blue",
+            },
+            {
+              url: "https://example.com/images/jeans-black.jpg",
+              alt: "Men's Slim Fit Jeans - Black",
+            },
+            {
+              url: "https://example.com/images/jeans-light-wash.jpg",
+              alt: "Men's Slim Fit Jeans - Light Wash",
+            },
+          ],
+          stock: 30,
+          price: 29.99,
+          discountPrice: 27.99,
+        },
+      ],
+    },
+    {
+      color: "Black",
+      color_hex_code: "#000000",
+      sizes: [
+        {
+          size: "L",
+          imageUrls: [
+            {
+              url: "https://example.com/images/jeans-dark-blue.jpg",
+              alt: "Men's Slim Fit Jeans - Dark Blue",
+            },
+            {
+              url: "https://example.com/images/jeans-black.jpg",
+              alt: "Men's Slim Fit Jeans - Black",
+            },
+            {
+              url: "https://example.com/images/jeans-light-wash.jpg",
+              alt: "Men's Slim Fit Jeans - Light Wash",
+            },
+          ],
+          stock: 10,
+          price: 29.99,
+          discountPrice: 28.99,
+        },
+      ],
+    },
+  ],
+};
