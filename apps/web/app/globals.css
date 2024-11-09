@@ -74,3 +74,15 @@ input{
   font-family: "Lexend", sans-serif;
   @apply bg-white border border-solid border-black py-2.5 px-4 w-full
 }
+
+.blog-box{
+  @apply w-full p-4 border border-solid border-black space-y-5
+}
+
+.blog-img{
+  @apply w-full border border-solid border-black relative  pt-80
+}
+
+.blog-img img{
+  @apply absolute inset-0 w-full h-full
+}
