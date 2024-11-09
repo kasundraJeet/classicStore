@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "../components/custom/Header";
+import Footer from "../components/custom/Footer";
 
 const coolvetiSans = localFont({
   src: "./fonts/CoolveticaRg.ttf",
   variable: "--font-coolveti-sans",
 });
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${coolvetiSans.variable}`}>
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

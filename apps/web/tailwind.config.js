@@ -6,6 +6,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        xl: "1232px",
+      },
+    },
     fontSize: {
       sm: "12px",
       base: "16px",
@@ -14,6 +20,8 @@ module.exports = {
       "3xl": "36px",
     },
     colors: {
+      white:"#FFFFFF",
+      black:"hsl(var(--dum-black))",
       peachOrange: "hsl(var(--peach-orange))",
       babyBlue: "hsl(var(--baby-blue))",
       lavenderPurple: "hsl(var(--lavender-purple))",
@@ -21,9 +29,6 @@ module.exports = {
       sageGreen: "hsl(var(--sage-green))",
       creamNude: "hsl(var(--cream-nude))",
     },
-    // extend: {
-   
-    // },
   },
   plugins: [],
 };

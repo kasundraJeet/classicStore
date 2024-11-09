@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lexend&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --peach-orange: "#EF9854";
-  --baby-blue: "#BAE1EB";
-  --lavender-purple: "#C8B6E8";
-  --pastel-pink: "#ED98DC";
-  --sage-green: "#D9E8B6";
-  --cream-nude: "#FFF8F0";
+  --peach-orange: 26, 83%, 63%;
+  --baby-blue: 192, 55%, 83%;
+  --lavender-purple: 262, 52%, 81%;
+  --pastel-pink: 312, 70%, 76%;
+  --sage-green: 78, 52%, 81%;
+  --cream-nude: 32, 100%, 97%;
+  --dum-black: 180, 8%, 3%;
 }
 
 .text-xl,
@@ -20,7 +21,56 @@
 }
 
 .text-sm,
-.text-base{
-    font-family: "Lexend", sans-serif;
-    font-weight: 400;
+.text-base {
+  font-family: "Lexend", sans-serif;
+  font-weight: 300;
+}
+
+body {
+  @apply bg-creamNude w-full h-full;
+}
+
+.navbar{
+  @apply border border-solid border-black flex items-stretch list-none my-5 divide-x divide-black
+}
+
+.navbar li{
+  @apply w-full
+}
+
+.navbar li a{
+  @apply w-full flex items-center justify-center py-4 tracking-wide text-base h-[50px]
+}
+
+footer{
+  @apply pt-20 divide-y divide-black
+}
+
+.section-title{
+  @apply text-3xl text-center bg-lavenderPurple w-fit mx-auto px-12 py-4 border border-solid border-black
+}
+
+.btn{
+  @apply border border-solid border-black bg-sageGreen text-base py-3 px-12 h-12
+}
+
+.product-box{
+  @apply w-full border border-solid border-black p-4 space-y-5
+}
+
+.product-img{
+  @apply w-full border border-solid border-r-black relative pt-96
+}
+
+.product-img img{
+  @apply absolute inset-0 w-full h-full
+}
+
+.product-box .color-btn{
+@apply border border-solid border-black min-w-6 min-h-6 max-w-6 max-h-6 rounded-full block
+}
+
+input{
+  font-family: "Lexend", sans-serif;
+  @apply bg-white border border-solid border-black py-2.5 px-4 w-full
 }
