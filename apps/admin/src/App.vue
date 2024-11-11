@@ -5,7 +5,7 @@ import { useColorMode } from '@vueuse/core'
 import LayoutWrapper from '@/components/custom/LayoutWrapper.vue';
 import { RouterView } from 'vue-router';
 const mode = useColorMode()
-const isLoggin = ref(true)
+const isLoggin = ref(false)
 console.log('isLoggin value:', isLoggin.value);
 </script>
 
