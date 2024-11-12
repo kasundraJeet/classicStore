@@ -7,12 +7,11 @@ import { RouterView } from 'vue-router';
 import { useAuthStore } from '@/stores'
 const mode = useColorMode()
 const authStore = useAuthStore()
-const isLoggin = ref(authStore.isLogging)
 </script>
 
 <template>
   <Toaster />
-  <LayoutWrapper v-if="isLoggin">
+  <LayoutWrapper v-if="authStore.isLogging">
     <RouterView />
   </LayoutWrapper>
   <RouterView v-else />
