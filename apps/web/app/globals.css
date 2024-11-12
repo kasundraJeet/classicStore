@@ -86,3 +86,20 @@ input{
 .blog-img img{
   @apply absolute inset-0 w-full h-full
 }
+
+.product-page-img{
+  @apply w-full  p-2 relative pt-[624px]
+}
+
+
+.product-page-img img{
+  @apply absolute inset-0 w-full h-full
+}
+
+.product-page .color-btn{
+  @apply border border-solid border-black rounded-full min-w-7 min-h-7 max-w-7 max-h-7
+}
+
+.product-page .size-btn{
+  @apply min-w-7 min-h-7 max-w-7 max-h-7 border border-solid border-black text-base
+}

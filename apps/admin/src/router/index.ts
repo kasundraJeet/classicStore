@@ -29,6 +29,8 @@ router.beforeEach((to, from, next) => {
 console.log(authStore.isLogging)
   if (to.meta.requiresAuth && !authStore.isLogging) {
     next({ name: 'login' })
+  } else if(!to.meta.requiresAuth && authStore.isLogging){
+    next({ name: 'home' })
   } else {
     next()
   }

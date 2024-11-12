@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router' // Import useRouter
+import { useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -11,15 +11,15 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { post } from '@/utils/apiHandler'
-import { useToast } from '@/components/ui/toast/use-toast'
 import { Loader } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 import { useAuthStore } from '@/stores'
+import axios from 'axios'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 
-const { toast } = useToast()
 const router = useRouter()
 
 const formSchema = toTypedSchema(
@@ -29,30 +29,51 @@ const formSchema = toTypedSchema(
   })
 )
 
-const { isFieldDirty, handleSubmit } = useForm({
+const { isFieldDirty, handleSubmit , resetForm } = useForm({
   validationSchema: formSchema,
 })
 const loader = ref(false)
 const authStore = useAuthStore()
 
+const fetchIpAddress = async () => {
+  try {
+    const response = await axios.get('https://api.ipify.org?format=json')
+    return response.data.ip
+  } catch (error) {
+    console.error("Failed to fetch IP address:", error)
+    return null
+  }
+}
+
 const onSubmit = handleSubmit(async (values) => {
   loader.value = true
+  const ipAddress = await fetchIpAddress()
+
+  if (!ipAddress) {
+    toast.error("Failed to fetch IP address")
+    loader.value = false
+    return
+  }
+
   try {
     const data = await post('/admin/login', {
       email: values.email,
       password: values.password,
-      ipAddress: '12',
+      ipAddress: ipAddress,
     })
     if (data.success == 1) {
       loader.value = false
       authStore.setLoggin(true)
       localStorage.setItem('token', data.data.token)
       router.push('/')
+      resetForm()
     } else {
-      toast('Event has been created')
+      resetForm()
+      toast.error(data.message)
     }
   } catch (e) {
     console.error(e)
+    toast.error("An error occurred during login")
   } finally {
     loader.value = false
   }

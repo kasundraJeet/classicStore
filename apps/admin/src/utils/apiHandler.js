@@ -15,10 +15,10 @@ export const post = async (url, data) => {
   } catch (e) {
     if (e.response) {
       if (e.response.status === 400) {
-        return e.response.data;
+        return e.response.data
       }
     }
-    console.error(e);
-    throw e;
+    console.error(e)
+    throw e
   }
 }

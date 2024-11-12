@@ -52,8 +52,8 @@ exports.adminLogin = async (req, res) => {
         expiresAt: newLogin.token_expired,
       });
     }
-  } catch (error) {
-    console.error("Login error:", error);
+  } catch (e) {
+    console.error("Login error:", e);
     return errorResponse(
       res,
       "An error occurred during login. Please try again later."

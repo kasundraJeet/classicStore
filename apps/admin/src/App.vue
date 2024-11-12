@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Toaster from '@/components/ui/toast/Toaster.vue'
+import { Toaster } from '@/components/ui/sonner'
 import { useColorMode } from '@vueuse/core'
 import LayoutWrapper from '@/components/custom/LayoutWrapper.vue';
 import { RouterView } from 'vue-router';
