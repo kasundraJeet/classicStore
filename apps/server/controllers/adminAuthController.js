@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const adminAuth = require("../models/adminAuth");
+const adminSessionSchema = require("../models/AdminSession");
 const {
   successResponseWithData,
   errorResponse,
@@ -28,7 +28,7 @@ exports.adminLogin = async (req, res) => {
     });
     const tokenExpiry = new Date(Date.now() + 60 * 60 * 1000).toISOString();
 
-    let existingLogin = await adminAuth.findOne({ ipAddress });
+    let existingLogin = await adminSessionSchema.findOne({ ipAddress });
 
     if (existingLogin) {
       existingLogin.token = token;
@@ -40,7 +40,7 @@ exports.adminLogin = async (req, res) => {
         expiresAt: existingLogin.token_expired,
       });
     } else {
-      const newLogin = new adminAuth({
+      const newLogin = new adminSessionSchema({
         ipAddress,
         token,
         token_expired: tokenExpiry,

@@ -20,7 +20,7 @@ const notFoundResponse = (res, msg) => {
 
 const validationErrorWithData = (res, msg, data) => {
   const resData = { success: 0, message: msg, data: data };
-  return res.status(400).json(resData);
+  return res.status(200).json(resData);
 };
 
 const unauthorizedResponse = (res, msg) => {

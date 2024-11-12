@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const adminAuth = new mongoose.Schema({
+const adminSessionSchema = new mongoose.Schema({
   ipAddress: {
     type: String,
     required: true,
@@ -19,4 +19,4 @@ const adminAuth = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("adminAuth", adminAuth);
+module.exports = mongoose.model("AdminSession", adminSessionSchema);
