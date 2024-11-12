@@ -4,9 +4,10 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 import { useColorMode } from '@vueuse/core'
 import LayoutWrapper from '@/components/custom/LayoutWrapper.vue';
 import { RouterView } from 'vue-router';
+import { useAuthStore } from '@/stores'
 const mode = useColorMode()
-const isLoggin = ref(false)
-console.log('isLoggin value:', isLoggin.value);
+const authStore = useAuthStore()
+const isLoggin = ref(authStore.isLogging)
 </script>
 
 <template>

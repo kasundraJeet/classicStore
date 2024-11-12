@@ -4,49 +4,59 @@ const adminAuth = require("../models/adminAuth");
 const {
   successResponseWithData,
   errorResponse,
-  validationErrorWithData
+  validationErrorWithData,
 } = require("../utils/responseHandlers");
 dotenv.config();
 
 exports.adminLogin = async (req, res) => {
   const { email, password, ipAddress } = req.body;
 
+  if (!email || !password || !ipAddress) {
+    return validationErrorWithData(res, "All fields are required", {});
+  }
+
   if (
-    email === process.env.ADMIN_EMAIL &&
-    password === process.env.ADMIN_PASS
+    email !== process.env.ADMIN_EMAIL ||
+    password !== process.env.ADMIN_PASS
   ) {
-    try {
-      const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
+    return validationErrorWithData(res, "Invalid username or password", {});
+  }
+
+  try {
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    const tokenExpiry = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+
+    let existingLogin = await adminAuth.findOne({ ipAddress });
+
+    if (existingLogin) {
+      existingLogin.token = token;
+      existingLogin.token_expired = tokenExpiry;
+      await existingLogin.save();
+
+      return successResponseWithData(res, "Login successful", {
+        token: existingLogin.token,
+        expiresAt: existingLogin.token_expired,
       });
-      const tokenExpiry = new Date(Date.now() + 60 * 60 * 1000);
+    } else {
+      const newLogin = new adminAuth({
+        ipAddress,
+        token,
+        token_expired: tokenExpiry,
+      });
 
-      let existingLogin = await adminAuth.findOne({ ipAddress });
-
-      if (existingLogin) {
-        existingLogin.token = token;
-        existingLogin.token_expired = tokenExpiry.toISOString();
-        await existingLogin.save();
-
-        return successResponseWithData(
-          res,
-          "Login successful",
-          existingLogin.token
-        );
-      } else {
-        const newLogin = new adminAuth({
-          ipAddress,
-          token,
-          token_expired: tokenExpiry.toISOString(),
-        });
-
-        await newLogin.save();
-        return successResponseWithData(res, "Login successful", newLogin.token);
-      }
-    } catch (e) {
-      return errorResponse(res, e);
+      await newLogin.save();
+      return successResponseWithData(res, "Login successful", {
+        token: newLogin.token,
+        expiresAt: newLogin.token_expired,
+      });
     }
-  } else {
-    return errorResponse(res, "Invalid username or password");
+  } catch (error) {
+    console.error("Login error:", error);
+    return errorResponse(
+      res,
+      "An error occurred during login. Please try again later."
+    );
   }
 };

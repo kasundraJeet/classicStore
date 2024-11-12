@@ -11,8 +11,14 @@ const api = axios.create({
 export const post = async (url, data) => {
   try {
     const response = await api.post(url, data)
-    return response
-  } catch (error) {
-    throw error
+    return response.data
+  } catch (e) {
+    if (e.response) {
+      if (e.response.status === 400) {
+        return e.response.data;
+      }
+    }
+    console.error(e);
+    throw e;
   }
 }

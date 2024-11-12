@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router' // Import useRouter
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -10,11 +11,16 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { post } from '@/utils/apiHandler'
-import { toast } from 'vue-sonner'
+import { useToast } from '@/components/ui/toast/use-toast'
+import { Loader } from 'lucide-vue-next'
+import { useAuthStore } from '@/stores'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+
+const { toast } = useToast()
+const router = useRouter()
 
 const formSchema = toTypedSchema(
   z.object({
@@ -27,6 +33,7 @@ const { isFieldDirty, handleSubmit } = useForm({
   validationSchema: formSchema,
 })
 const loader = ref(false)
+const authStore = useAuthStore()
 
 const onSubmit = handleSubmit(async (values) => {
   loader.value = true
@@ -36,12 +43,13 @@ const onSubmit = handleSubmit(async (values) => {
       password: values.password,
       ipAddress: '12',
     })
-
-    if (data.success === 1) {
+    if (data.success == 1) {
       loader.value = false
-    }
-    else{
-      toast(data.message)
+      authStore.setLoggin(true)
+      localStorage.setItem('token', data.data.token)
+      router.push('/')
+    } else {
+      toast('Event has been created')
     }
   } catch (e) {
     console.error(e)
@@ -75,6 +83,7 @@ const onSubmit = handleSubmit(async (values) => {
         </FormField>
       </div>
       <Button class="w-full" type="submit" :disabled="loader">
+        <Loader v-if="loader" class="w-4 h-4 mr-2 animate-spin" />
         <span v-if="loader">Loading...</span>
         <span v-else>Submit</span>
       </Button>
