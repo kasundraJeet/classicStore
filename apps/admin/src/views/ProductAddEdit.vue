@@ -210,7 +210,48 @@ const onSubmit = handleSubmit((values) => {
                           <DialogDescription>Crete new color after save it's save in product </DialogDescription>
                         </DialogHeader>
                         <div class="py-4 space-y-6">
-                          
+                          <div class="border border-solid border-border flex items-stretch rounded-lg overflow-hidden !divide-x divide-border">
+                            <div class="min-w-14">
+                              <Input type="color" class="outline-none  border-0 border-solid rounded-none focus-visible:ring-0" />
+                            </div>
+                            <Input type="text" class="outline-none  border-0 border-solid rounded-none focus-visible:ring-0" placeholder="Color Name" />
+                          </div>
+                        </div>
+                        <DialogFooter>
+                          <Button type="submit">
+                            Save
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+            <FormField v-slot="{ componentField }" name="username" :validate-on-blur="!isFieldDirty">
+              <FormItem>
+                <FormLabel>Pick Size</FormLabel>
+                <FormControl>
+                  <div class="color-pick-field">
+                    <Dialog>
+                      <DialogTrigger as-child>
+                        <Button variant="outline" size="icon" class="color">
+                          <Plus class="w-4 h-4" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent class="sm:max-w-xl">
+                        <DialogHeader>
+                          <DialogTitle>Pick color or add</DialogTitle>
+                          <DialogDescription>Crete new color after save it's save in product </DialogDescription>
+                        </DialogHeader>
+                        <div class="py-4 space-y-6">
+                          <div class="border border-solid border-border flex items-stretch rounded-lg overflow-hidden !divide-x divide-border">
+                            <div class="min-w-14">
+                              <Input type="color" class="outline-none  border-0 border-solid rounded-none focus-visible:ring-0" />
+                            </div>
+                            <Input type="text" class="outline-none  border-0 border-solid rounded-none focus-visible:ring-0" placeholder="Color Name" />
+                          </div>
                         </div>
                         <DialogFooter>
                           <Button type="submit">

@@ -16,7 +16,7 @@ const navLinks = ref([
     id: "2",
     link_name: "Products",
     link_path: "/products",
-    link_active: ["/products"]
+    link_active: ["/products" , "/product-add-edit"]
   }
 ])
 
